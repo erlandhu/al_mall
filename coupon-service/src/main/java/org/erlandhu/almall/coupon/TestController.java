@@ -20,9 +20,9 @@ public class TestController {
 
 
     @GetMapping("couponTemplate")
-    public String t1() {
+    public CouponTemplate t1() {
         CouponTemplate one = couponTemplateMapper.getOne(1);
-        return one.getCouponName();
+        return one;
     }
 
 }

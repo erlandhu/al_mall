@@ -20,7 +20,8 @@ public class CouponTemplate {
 
     private String description;
 
-    private CouponType couponType;
+//    private CouponType couponType;
+    private Integer couponType;
 
     private Integer issuedQuantity;
 
@@ -34,7 +35,8 @@ public class CouponTemplate {
 
     private Instant endTime;
 
-    private CouponTemplateState couponState;
+    private Integer couponState;
+//    private CouponTemplateState couponState;
 
     private boolean isVisible = true;
 

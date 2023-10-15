@@ -1,5 +1,6 @@
 package org.erland.almall.mall;
 
+import org.erland.almall.mall.coupon.remote.CouponTemplateService;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,14 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("test")
 public class TestController {
 
-
+    private final CouponTemplateService couponTemplateService;
     private final DiscoveryClient discoveryClient;
-
     private final RestTemplate restTemplate;
+
+    @GetMapping
+    public Object getCouponTemplate(Integer id) {
+        return couponTemplateService.getOne(id);
+    }
 
     @GetMapping("services/{service}")
     public Object test(@PathVariable String service) {
@@ -27,9 +32,9 @@ public class TestController {
     }
 
 
-    public TestController(DiscoveryClient discoveryClient, RestTemplate restTemplate) {
+    public TestController(CouponTemplateService couponTemplateService, DiscoveryClient discoveryClient, RestTemplate restTemplate) {
+        this.couponTemplateService = couponTemplateService;
         this.discoveryClient = discoveryClient;
         this.restTemplate = restTemplate;
     }
-
 }
