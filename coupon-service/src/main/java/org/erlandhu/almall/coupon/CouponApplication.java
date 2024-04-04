@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-@MapperScan("org.erlandhu.almall.coupon.mapper")
+@MapperScan("org.erlandhu.almall.coupon.repository.mapper")
 public class CouponApplication {
 
     public static void main(String[] args) {

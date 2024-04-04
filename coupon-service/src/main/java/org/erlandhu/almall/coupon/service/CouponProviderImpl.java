@@ -14,10 +14,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@Repository
 public class CouponProviderImpl implements CouponProvider {
 
-    private CouponService couponService;
+    private final CouponService couponService;
 
     @Override
     public Coupon applyCoupon(ApplyCouponRequest request) {
