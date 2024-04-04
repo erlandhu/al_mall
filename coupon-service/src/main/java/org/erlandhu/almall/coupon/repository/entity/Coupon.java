@@ -1,4 +1,4 @@
-package org.erlandhu.almall.coupon.entity;
+package org.erlandhu.almall.coupon.repository.entity;
 
 import lombok.Data;
 

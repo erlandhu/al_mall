@@ -1,7 +1,7 @@
-package org.erlandhu.almall.coupon.mapper;
+package org.erlandhu.almall.coupon.repository.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.erlandhu.almall.coupon.entity.Coupon;
+import org.erlandhu.almall.coupon.repository.entity.Coupon;
 
 /**
  * @author huaolan created on 2023/09/15

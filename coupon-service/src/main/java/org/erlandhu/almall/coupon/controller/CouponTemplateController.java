@@ -2,8 +2,8 @@ package org.erlandhu.almall.coupon.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.erlandhu.almall.coupon.entity.CouponTemplate;
-import org.erlandhu.almall.coupon.service.CouponTemplateService;
+import org.erlandhu.almall.coupon.repository.entity.CouponTemplate;
+import org.erlandhu.almall.coupon.repository.service.ICouponTemplateService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("couponTemplate")
 public class CouponTemplateController {
 
-    private final CouponTemplateService couponTemplateService;
+    private final ICouponTemplateService ICouponTemplateService;
 
     @GetMapping
     public CouponTemplate getOne(Integer id) {
-        return couponTemplateService.getOne(id);
+        return ICouponTemplateService.getOne(id);
     }
 }

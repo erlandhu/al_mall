@@ -1,8 +1,8 @@
-package org.erlandhu.almall.coupon.service;
+package org.erlandhu.almall.coupon.repository.service;
 
 import lombok.RequiredArgsConstructor;
-import org.erlandhu.almall.coupon.entity.CouponTemplate;
-import org.erlandhu.almall.coupon.mapper.CouponTemplateMapper;
+import org.erlandhu.almall.coupon.repository.entity.CouponTemplate;
+import org.erlandhu.almall.coupon.repository.mapper.CouponTemplateMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CouponTemplateServiceImpl implements CouponTemplateService {
+public class ICouponTemplateServiceImpl implements ICouponTemplateService {
 
     private final CouponTemplateMapper couponTemplateMapper;
 
