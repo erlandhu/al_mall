@@ -21,7 +21,6 @@ public class CouponProviderImpl implements CouponProvider {
 
     @Override
     public Coupon applyCoupon(ApplyCouponRequest request) {
-
-        return null;
+        return couponService.applyCoupon(request);
     }
 }
