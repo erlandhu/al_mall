@@ -3,8 +3,12 @@
 <mapper namespace="org.erlandhu.almall.coupon.repository.mapper.CouponTemplateMapper">
 
     <select id="getOne" resultType="org.erlandhu.almall.coupon.repository.entity.CouponTemplate">
-        select * from coupon_template where  id = ${id}
+        select * from coupon_template where  id = #{id}
     </select>
 
 
+    <update id="decrementInventory">
+        update coupon_template set inventory = inventory - 1, updated_at = NOW()
+        where id = #{id}
+    </update>
 </mapper>

@@ -20,4 +20,9 @@ public class ICouponTemplateServiceImpl implements ICouponTemplateService {
 
         return couponTemplateMapper.getOne(id);
     }
+
+    @Override
+    public int decrementInventory(Integer id) {
+        return couponTemplateMapper.decrementInventory(id);
+    }
 }

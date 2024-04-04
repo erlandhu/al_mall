@@ -8,4 +8,6 @@ import org.erlandhu.almall.coupon.repository.entity.CouponTemplate;
 public interface ICouponTemplateService {
 
     CouponTemplate getOne(Integer id);
+
+    int decrementInventory(Integer id);
 }

@@ -10,4 +10,6 @@ public interface CouponTemplateMapper {
 
     CouponTemplate getOne(@Param("id") Integer id);
 
+    int decrementInventory(@Param("id") Integer id);
+
 }

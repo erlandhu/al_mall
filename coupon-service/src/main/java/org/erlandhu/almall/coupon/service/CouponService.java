@@ -63,9 +63,9 @@ public class CouponService {
 
 
         // 库存入库、生成领取记录
+        int i = couponTemplateService.decrementInventory(couponTemplateId);
 
-
-        return null;
+        return coupon;
     }
 
     private Coupon generate(CouponTemplate couponTemplate) {
