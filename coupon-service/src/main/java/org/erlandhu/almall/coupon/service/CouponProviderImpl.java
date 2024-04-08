@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.erlandhu.almall.coupon.api.CouponProvider;
 import org.erlandhu.almall.coupon.api.dto.ApplyCouponRequest;
 import org.erlandhu.almall.coupon.repository.entity.Coupon;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 /**

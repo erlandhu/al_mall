@@ -1,5 +1,7 @@
 package org.erlandhu.almall.coupon.service;
 
+import com.alibaba.nacos.client.naming.utils.RandomUtils;
+import io.netty.util.internal.MathUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.erlandhu.almall.coupon.InventoryManager;
@@ -13,7 +15,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.time.Instant;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.math.RoundingMode.DOWN;
 
 /**
  * @author huaolan created on 2024/04/04
@@ -70,6 +81,51 @@ public class CouponService {
 
     private Coupon generate(CouponTemplate couponTemplate) {
         Coupon coupon = new Coupon();
+
         return coupon;
+    }
+
+
+    public static BigDecimal discount(int totalInventory, BigDecimal totalAmount) {
+        if (totalInventory == 1) {
+            return totalAmount;
+        }
+
+        BigDecimal preAmount = totalAmount.divide(new BigDecimal(totalInventory), 2, DOWN);
+
+        double minAmount = 0.01;
+        double maxAmount = preAmount.multiply(new BigDecimal(2)).doubleValue();
+
+        ThreadLocalRandom current = ThreadLocalRandom.current();
+
+        double v = current.nextDouble(minAmount, maxAmount);
+        BigDecimal bigDecimal = new BigDecimal("" + v);
+        return bigDecimal.setScale(2, DOWN);
+    }
+
+    public static void main(String[] args) {
+
+        BigDecimal totalAmount = new BigDecimal(100);
+        int totalInventory = 10;
+
+        BigDecimal afterTotal = BigDecimal.ZERO;
+        int index = 1;
+
+        for (; totalInventory > 0; totalInventory--) {
+            BigDecimal discount = discount(totalInventory, totalAmount);
+            System.err.println("第" + index + "个包金额：" + discount);
+
+            totalAmount = totalAmount.subtract(discount);
+
+            System.out.println("剩余金额：" + totalAmount);
+
+            afterTotal = afterTotal.add(discount);
+
+            index++;
+        }
+
+        System.err.println("over");
+        System.err.println("afterTotal" + afterTotal);
+
     }
 }

@@ -10,8 +10,6 @@ import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 /**
  * @author huaolan created on 2024/04/04
  */
