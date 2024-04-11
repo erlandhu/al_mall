@@ -22,7 +22,7 @@ public class ICouponTemplateServiceImpl implements ICouponTemplateService {
     }
 
     @Override
-    public int decrementInventory(Integer id) {
-        return couponTemplateMapper.decrementInventory(id);
+    public int decrementInventory(Integer id, double balance) {
+        return couponTemplateMapper.decrementInventory(id, balance);
     }
 }

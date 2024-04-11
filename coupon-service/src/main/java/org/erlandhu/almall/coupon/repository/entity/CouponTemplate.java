@@ -20,7 +20,7 @@ public class CouponTemplate {
 
     private String description;
 
-//    private CouponType couponType;
+    //    private CouponType couponType;
     private Integer couponType;
 
     private Integer issuedQuantity;
@@ -30,6 +30,8 @@ public class CouponTemplate {
     private Integer verifiedQuantity = 0;
 
     private BigDecimal issuedAmount = BigDecimal.ZERO;
+
+    private BigDecimal balance = BigDecimal.ZERO;
 
     private Instant startTime;
 

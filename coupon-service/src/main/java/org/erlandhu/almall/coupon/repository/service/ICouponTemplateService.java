@@ -9,5 +9,5 @@ public interface ICouponTemplateService {
 
     CouponTemplate getOne(Integer id);
 
-    int decrementInventory(Integer id);
+    int decrementInventory(Integer id, double v);
 }

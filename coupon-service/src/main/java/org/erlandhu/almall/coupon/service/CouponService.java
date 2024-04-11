@@ -1,7 +1,5 @@
 package org.erlandhu.almall.coupon.service;
 
-import com.alibaba.nacos.client.naming.utils.RandomUtils;
-import io.netty.util.internal.MathUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.erlandhu.almall.coupon.InventoryManager;
@@ -9,6 +7,7 @@ import org.erlandhu.almall.coupon.api.dto.ApplyCouponRequest;
 import org.erlandhu.almall.coupon.repository.entity.Coupon;
 import org.erlandhu.almall.coupon.repository.entity.CouponTemplate;
 import org.erlandhu.almall.coupon.repository.entity.CouponTemplateState;
+import org.erlandhu.almall.coupon.repository.entity.CouponType;
 import org.erlandhu.almall.coupon.repository.service.ICouponService;
 import org.erlandhu.almall.coupon.repository.service.ICouponTemplateService;
 import org.springframework.stereotype.Service;
@@ -16,13 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.time.Instant;
-import java.util.List;
-import java.util.Random;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.math.RoundingMode.DOWN;
 
@@ -70,17 +65,26 @@ public class CouponService {
         }
 
         // 生成优惠券
-        Coupon coupon = generate(couponTemplate);
-
+        Coupon coupon = generate(couponTemplate, memberId);
 
         // 库存入库、生成领取记录
-        int i = couponTemplateService.decrementInventory(couponTemplateId);
+        int i = couponTemplateService.decrementInventory(couponTemplateId, coupon.getDiscountAmount().doubleValue());
 
         return coupon;
     }
 
-    private Coupon generate(CouponTemplate couponTemplate) {
+    private Coupon generate(CouponTemplate couponTemplate, Integer memberId) {
         Coupon coupon = new Coupon();
+        coupon.setCouponCode(System.nanoTime()+"");
+        coupon.setCouponType(CouponType.CASH_COUPON.ordinal());
+        coupon.setShopId(couponTemplate.getShopId());
+        coupon.setMemberId(memberId);
+        coupon.setCouponTemplateId(couponTemplate.getId());
+        coupon.setMemberName("");
+        coupon.setMemberPhone("");
+        coupon.setDiscountAmount(discount(couponTemplate.getInventory(), couponTemplate.getBalance()));
+        coupon.setStartTime(Instant.now());
+        coupon.setEndTime(Instant.now().plus(1, ChronoUnit.YEARS));
 
         return coupon;
     }
